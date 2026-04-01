@@ -1,4 +1,6 @@
 package classes.smartDevices;
 
-public class SmartVacuumCleaner {
+import interfaces.SmartDevice;
+
+public class SmartVacuumCleaner implements SmartDevice {
 }

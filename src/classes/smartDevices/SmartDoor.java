@@ -1,4 +1,6 @@
 package classes.smartDevices;
 
-public class SmartDoor {
+import interfaces.SmartDevice;
+
+public class SmartDoor implements SmartDevice {
 }

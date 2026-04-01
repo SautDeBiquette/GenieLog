@@ -1,4 +1,6 @@
 package classes.smartDevices;
 
-public class SmartDishwasher {
+import interfaces.SmartDevice;
+
+public class SmartDishwasher implements SmartDevice {
 }

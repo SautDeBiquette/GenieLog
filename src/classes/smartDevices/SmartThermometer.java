@@ -1,4 +1,6 @@
 package classes.smartDevices;
 
-public class SmartThermometer {
+import interfaces.SmartDevice;
+
+public class SmartThermometer implements SmartDevice {
 }
