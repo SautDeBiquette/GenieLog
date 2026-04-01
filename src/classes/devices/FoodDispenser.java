@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class FoodDispenser {
+import factories.DeviceFactory;
+
+public class FoodDispenser  extends DeviceFactory {
 }

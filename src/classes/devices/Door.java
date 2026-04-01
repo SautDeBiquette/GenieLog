@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class Door {
+import factories.DeviceFactory;
+
+public class Door  extends DeviceFactory {
 }

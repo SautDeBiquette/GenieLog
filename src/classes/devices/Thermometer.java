@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class Thermometer {
+import factories.DeviceFactory;
+
+public class Thermometer  extends DeviceFactory {
 }

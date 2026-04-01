@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class WashingMachine {
+import factories.DeviceFactory;
+
+public class WashingMachine  extends DeviceFactory {
 }

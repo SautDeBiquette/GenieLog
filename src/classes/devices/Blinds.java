@@ -1,4 +1,7 @@
 package classes.devices;
 
-public class Blinds {
+import factories.DeviceFactory;
+
+public class Blinds extends DeviceFactory {
+
 }

@@ -1,4 +1,7 @@
 package classes.smartDevices;
 
-public class SmartBlinds {
+import interfaces.SmartDevice;
+
+public class SmartBlinds implements SmartDevice {
+
 }

@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class VacuumCleaner {
+import factories.DeviceFactory;
+
+public class VacuumCleaner  extends DeviceFactory {
 }

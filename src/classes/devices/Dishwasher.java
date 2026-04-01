@@ -1,4 +1,6 @@
 package classes.devices;
 
-public class Dishwasher {
+import factories.DeviceFactory;
+
+public class Dishwasher  extends DeviceFactory {
 }
