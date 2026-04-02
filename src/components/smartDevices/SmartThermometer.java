@@ -6,6 +6,7 @@ public class SmartThermometer implements SmartDevice, Runnable {
     private String serialNumber;
     private String label;
     private boolean isOn;
+    private double temperature;
 
 
     @Override
@@ -50,6 +51,7 @@ public class SmartThermometer implements SmartDevice, Runnable {
         return "SmartThermometer " + label + "{" +
                 "serialNumber='" + serialNumber + '\'' +
                 ", isOn=" + isOn +
+                ", temperature=" + temperature +
                 '}';
     }
 
@@ -74,5 +76,10 @@ public class SmartThermometer implements SmartDevice, Runnable {
     public void setOn(boolean on) {
         isOn = on;
     }
-
+    public double getTemperature() {
+        return temperature;
+    }
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
 }
