@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartFoodDispenser implements SmartDevice, Runnable {
+public class SmartFoodDispenser implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -15,7 +15,7 @@ public class SmartFoodDispenser implements SmartDevice, Runnable {
         } else {
             notifyUser("Le distributeur de nourriture [" + label + "] distribue une portion...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le distributeur de nourriture [" + label + "] a terminé la distribution ");
             this.setOn(false);
         }
@@ -26,7 +26,7 @@ public class SmartFoodDispenser implements SmartDevice, Runnable {
         if (this.isOn()) {
             notifyUser("Le distributeur de nourriture [" + label + "] s'arrête... ");
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le distributeur de nourriture [" + label + "] est arrêté ");
         } else {
             notifyUser("Le distributeur de nourriture [" + label + "] n'est pas en cours de fonctionnement ");
@@ -54,7 +54,10 @@ public class SmartFoodDispenser implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run() {}
+    public void run() {
+        this.schedule(13100);
+        this.schedule(24000);
+    }
 
     public String getSerialNumber() {
         return serialNumber;

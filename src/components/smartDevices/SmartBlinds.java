@@ -4,20 +4,22 @@ import interfaces.SmartDevice;
 
 import java.sql.Time;
 
-public class SmartBlinds implements SmartDevice, Runnable {
+public class SmartBlinds implements SmartDevice {
     private  String serialNumber;
     private String label;
     private boolean isOn;
 
+    private static final String VOLETS = "Les volets [";
+
     @Override
     public void turnOn() {
         if(this.isOn()) {
-            notifyUser("Les volets [" + label + "] sont déjà ouvert ");
+            notifyUser(VOLETS + label + "] sont déjà ouvert ");
         } else {
-            notifyUser("Les volets [" + label + "] s'ouvrent...");
+            notifyUser(VOLETS + label + "] s'ouvrent...");
             this.setOn(true);
-            try { Thread.sleep(3000);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
-            notifyUser("Les volets [" + label + "] sont ouverts ");
+            try { Thread.sleep(300);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
+            notifyUser(VOLETS + label + "] sont ouverts ");
         }
     }
 
@@ -26,7 +28,7 @@ public class SmartBlinds implements SmartDevice, Runnable {
         if(this.isOn()) {
             notifyUser("Les volets [" + label + "] se ferment...");
             this.setOn(false);
-            try { Thread.sleep(3000);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
+            try { Thread.sleep(300);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
             notifyUser("Les volets [" + label + "] sont fermés ");
         } else {
             notifyUser("Les volets [" + label + "] sont déjà fermés ");
@@ -58,7 +60,9 @@ public class SmartBlinds implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run(){}
+    public void run(){
+        this.schedule(10100);
+    }
 
     public String getSerialNumber() {
         return serialNumber;

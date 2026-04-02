@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartVacuumCleaner implements SmartDevice, Runnable {
+public class SmartVacuumCleaner implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -15,7 +15,7 @@ public class SmartVacuumCleaner implements SmartDevice, Runnable {
         } else {
             notifyUser("L'aspirateur [" + label + "] démarre un cycle de nettoyage...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(600); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("L'aspirateur [" + label + "] a terminé le cycle de nettoyage ");
             this.setOn(false);
         }
@@ -26,7 +26,7 @@ public class SmartVacuumCleaner implements SmartDevice, Runnable {
         if (this.isOn()) {
             notifyUser("L'aspirateur [" + label + "] s'arrête... ");
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("L'aspirateur [" + label + "] est arrêté ");
         } else {
             notifyUser("L'aspirateur [" + label + "] n'est pas en cours de fonctionnement ");
@@ -54,8 +54,9 @@ public class SmartVacuumCleaner implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run() {}
-
+    public void run() {
+        this.schedule(11100);
+    }
     public String getSerialNumber() {
         return serialNumber;
     }

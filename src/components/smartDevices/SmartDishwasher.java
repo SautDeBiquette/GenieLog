@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartDishwasher implements SmartDevice, Runnable {
+public class SmartDishwasher implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -15,7 +15,7 @@ public class SmartDishwasher implements SmartDevice, Runnable {
         } else {
             notifyUser("Le lave-vaisselle [" + label + "] démarre un cycle de lavage...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le lave-vaisselle [" + label + "] a terminé son cycle de lavage ");
             this.setOn(false);
         }
@@ -25,7 +25,7 @@ public class SmartDishwasher implements SmartDevice, Runnable {
     public void turnOff() {
         if (this.isOn()) {
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le lave-vaisselle [" + label + "] s'arrête ");
         } else {
             notifyUser("Le lave-vaisselle [" + label + "] n'est pas en cours de fonctionnement ");
@@ -53,7 +53,10 @@ public class SmartDishwasher implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run() {}
+    public void run() {
+        this.schedule(36000);
+        this.notifyUser("Vous pouvez venir récuperer votre vaisselle !");
+    }
 
     public String getSerialNumber() {
         return serialNumber;

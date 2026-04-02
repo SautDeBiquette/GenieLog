@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartThermometer implements SmartDevice, Runnable {
+public class SmartThermometer implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -16,7 +16,7 @@ public class SmartThermometer implements SmartDevice, Runnable {
         } else {
             notifyUser("Le thermomètre [" + label + "] démarre une mesure...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le thermomètre [" + label + "] a terminé la mesure ");
             this.setOn(false);
         }
@@ -27,7 +27,7 @@ public class SmartThermometer implements SmartDevice, Runnable {
         if (this.isOn()) {
             System.out.println("Le thermomètre [" + label + "] s'éteint... ");
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le thermomètre [" + label + "] est éteint ");
         } else {
             System.out.println("Le thermomètre [" + label + "] est déjà éteint ");

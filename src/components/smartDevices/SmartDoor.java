@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartDoor implements SmartDevice, Runnable {
+public class SmartDoor implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -15,7 +15,7 @@ public class SmartDoor implements SmartDevice, Runnable {
         } else {
             notifyUser("La porte [" + label + "] s'ouvre...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("La porte [" + label + "] est maintenant ouverte ");
         }
     }
@@ -25,7 +25,7 @@ public class SmartDoor implements SmartDevice, Runnable {
         if (this.isOn()) {
             notifyUser("La porte [" + label + "] se ferme...");
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("La porte [" + label + "] est fermée ");
         } else {
             notifyUser("La porte [" + label + "] est déjà fermée ");
@@ -53,7 +53,10 @@ public class SmartDoor implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run() {}
+    public void run() {
+        this.schedule(11100);
+        this.schedule(700);
+    }
 
     public String getSerialNumber() {
         return serialNumber;

@@ -1,5 +1,3 @@
-
-
 import builders.HomeBuilder;
 import builders.HostDirector;
 import builders.WorkplaceBuilder;
@@ -8,8 +6,9 @@ import components.hosts.Home;
 import components.hosts.Room;
 import components.hosts.Workplace;
 import components.smartDevices.*;
-import factories.*;
+import factories.DeviceFactory;
 import interfaces.SmartDevice;
+import utils.Timer;
 
 import java.util.List;
 
@@ -26,23 +25,23 @@ public class Main {
         // ─────────────────────────────────────────
         System.out.println("Création des appareils via DeviceFactory\n");
 
-        DeviceFactory blindsFactory        = new Blinds();
-        DeviceFactory thermometerFactory   = new Thermometer();
+        DeviceFactory blindsFactory = new Blinds();
+        DeviceFactory thermometerFactory = new Thermometer();
         DeviceFactory coffeeMachineFactory = new CoffeeMachine();
-        DeviceFactory dishwasherFactory    = new Dishwasher();
-        DeviceFactory doorFactory          = new Door();
-        DeviceFactory vacuumFactory        = new VacuumCleaner();
-        DeviceFactory washingFactory       = new WashingMachine();
+        DeviceFactory dishwasherFactory = new Dishwasher();
+        DeviceFactory doorFactory = new Door();
+        DeviceFactory vacuumFactory = new VacuumCleaner();
+        DeviceFactory washingFactory = new WashingMachine();
         DeviceFactory foodDispenserFactory = new FoodDispenser();
 
-        SmartDevice blinds          = blindsFactory.createSmartDevice();
-        SmartDevice thermostat      = thermometerFactory.createSmartDevice();
-        SmartDevice coffee          = coffeeMachineFactory.createSmartDevice();
-        SmartDevice dishwasher      = dishwasherFactory.createSmartDevice();
-        SmartDevice door            = doorFactory.createSmartDevice();
-        SmartDevice vacuum          = vacuumFactory.createSmartDevice();
-        SmartDevice washing         = washingFactory.createSmartDevice();
-        SmartDevice foodDispenser   = foodDispenserFactory.createSmartDevice();
+        SmartDevice blinds = blindsFactory.createSmartDevice();
+        SmartDevice thermostat = thermometerFactory.createSmartDevice();
+        SmartDevice coffee = coffeeMachineFactory.createSmartDevice();
+        SmartDevice dishwasher = dishwasherFactory.createSmartDevice();
+        SmartDevice door = doorFactory.createSmartDevice();
+        SmartDevice vacuum = vacuumFactory.createSmartDevice();
+        SmartDevice washing = washingFactory.createSmartDevice();
+        SmartDevice foodDispenser = foodDispenserFactory.createSmartDevice();
 
         ((SmartBlinds) blinds).setLabel("Volets salon");
         ((SmartBlinds) blinds).setSerialNumber("BL-001");
@@ -68,37 +67,24 @@ public class Main {
 
         ((SmartFoodDispenser) foodDispenser).setLabel("Gib food");
         ((SmartFoodDispenser) foodDispenser).setSerialNumber("C4TF00D");
-
-        // Optionnel
-        System.out.println("Interaction avec les appareils\n");
-
-        blinds.turnOn();
-        blinds.turnOff();
-
-        thermostat.turnOn();
-        System.out.println(thermostat.report());
-
-        coffee.turnOn();
-        System.out.println(coffee.report());
-        coffee.turnOff();
         //
 
         System.out.println();
 
         System.out.println("Construction d'une Smart Home\n");
 
-        Room salon   = new Room(List.of(blinds, thermostat, vacuum) , "Salon");
-        Room cuisine = new Room(List.of(dishwasher, foodDispenser)  , "Cuisine");
-        Room entree  = new Room(List.of(door)                       , "Entrée");
+        Room salon = new Room(List.of(blinds, thermostat, vacuum), "Salon");
+        Room cuisine = new Room(List.of(dishwasher, foodDispenser), "Cuisine");
+        Room entree = new Room(List.of(door), "Entrée");
 
         HomeBuilder homeBuilder = new HomeBuilder();
 
 
         System.out.println("Construction d'un Smart Workplace\n");
 
-        Room openSpace  = new Room(List.of(thermostat, blinds)      , "Open Space");
-        Room salleCafe  = new Room(List.of(coffee, foodDispenser)   , "Salle café");
-        Room local      = new Room(List.of(washing, dishwasher)     , "Local tech");
+        Room openSpace = new Room(List.of(thermostat, blinds), "Open Space");
+        Room salleCafe = new Room(List.of(coffee, foodDispenser), "Salle café");
+        Room local = new Room(List.of(washing, dishwasher), "Local tech");
 
         WorkplaceBuilder workplaceBuilder = new WorkplaceBuilder();
 
@@ -128,20 +114,38 @@ public class Main {
         System.out.println("Salles : " + workplace.getRooms().size() + "\n");
 
 
-        // ETIENNE CACA GONELLA CODE ICI
+        //Définition des différents Threads
+        Thread blindsThread = new Thread(blinds);
+        Thread thermostatThread = new Thread(thermostat);
+        Thread coffeeThread = new Thread(coffee);
+        Thread dishwasherThread = new Thread(dishwasher);
+        Thread doorThread = new Thread(door);
+        Thread vacuumThread = new Thread(vacuum);
+        Thread washingThread = new Thread(washing);
+        Thread foodDispenserThread = new Thread(foodDispenser);
 
+        //Pour garder un oeil sur le temps qui passe
+        Timer timer = new Timer();
+        Thread timerThread = new Thread(timer);
 
-        System.out.println("reports\n");
+        //Lancement des Threads
+        timerThread.start();
+        blindsThread.start();
+        thermostatThread.start();
+        coffeeThread.start();
+        dishwasherThread.start();
+        doorThread.start();
+        vacuumThread.start();
+        washingThread.start();
+        foodDispenserThread.start();
 
-        for (SmartDevice device : salon.getRoomsDevices()) {
-            System.out.println(device.report());
-        }
+//        // Déroulement de la journée
+//        System.out.println("reports\n");
+//        for (SmartDevice device : salon.getRoomsDevices()) {
+//            System.out.println(device.report());
+//        }
 
         System.out.println();
-
-
-        System.out.println("\n========================================");
-        System.out.println("           FIN DE LA DÉMO               ");
-        System.out.println("========================================");
     }
 }
+

@@ -2,7 +2,7 @@ package components.smartDevices;
 
 import interfaces.SmartDevice;
 
-public class SmartWashingMachine implements SmartDevice, Runnable {
+public class SmartWashingMachine implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -15,7 +15,7 @@ public class SmartWashingMachine implements SmartDevice, Runnable {
         } else {
             notifyUser("Le lave-linge [" + label + "] démarre un cycle de lavage...");
             this.setOn(true);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le lave-linge [" + label + "] a terminé son cycle de lavage ");
             this.setOn(false);
         }
@@ -26,7 +26,7 @@ public class SmartWashingMachine implements SmartDevice, Runnable {
         if (this.isOn()) {
             notifyUser("Le lave-linge [" + label + "] s'arrête...");
             this.setOn(false);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser("Le lave-linge [" + label + "] est arrêté ");
         } else {
             notifyUser("Le lave-linge [" + label + "] n'est pas en cours de fonctionnement ");
@@ -54,7 +54,10 @@ public class SmartWashingMachine implements SmartDevice, Runnable {
     }
 
     @Override
-    public void run(){}
+    public void run(){
+        this.schedule(31100);
+        this.notifyUser("Vous pouvez venir récuperer votre linge !");
+    }
 
     public String getSerialNumber() {
         return serialNumber;
