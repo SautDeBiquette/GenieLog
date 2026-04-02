@@ -4,68 +4,78 @@ import interfaces.SmartDevice;
 
 import java.sql.Time;
 
-public class SmartBlinds implements SmartDevice {
+public class SmartBlinds implements SmartDevice, Runnable {
     private  String serialNumber;
     private String label;
     private boolean isOn;
-    private Time schedule;
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public boolean isOn() {
-        return isOn;
-    }
-
-    public void setOn(boolean on) {
-        isOn = on;
-    }
-
-    public Time getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Time schedule) {
-        this.schedule = schedule;
-    }
 
     @Override
     public void turnOn() {
-        this.setOn(true);
-        System.out.println("Les volets s'ouvrent ");
+        if(this.isOn()) {
+            notifyUser("Les volets [" + label + "] sont déjà ouvert ");
+        } else {
+            notifyUser("Les volets [" + label + "] s'ouvrent...");
+            this.setOn(true);
+            try { Thread.sleep(3000);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
+            notifyUser("Les volets [" + label + "] sont ouverts ");
+        }
     }
 
     @Override
     public void turnOff() {
-        this.setOn(false);
-        System.out.println("Les volets se ferment ");
+        if(this.isOn()) {
+            notifyUser("Les volets [" + label + "] se ferment...");
+            this.setOn(false);
+            try { Thread.sleep(3000);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
+            notifyUser("Les volets [" + label + "] sont fermés ");
+        } else {
+            notifyUser("Les volets [" + label + "] sont déjà fermés ");
+        }
     }
 
     @Override
-    public String notifyUser() {
-        return "";
+    public String notifyUser(String message) {
+        System.out.println(message);
+        return message;
     }
 
     @Override
-    public String schedule(Time timeScheduled) {
-        return "";
+    public void schedule(int timeToExecute) {
+        try { Thread.sleep(timeToExecute);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
+        if(this.isOn()) {
+            this.turnOff();
+        } else {
+            this.turnOn();
+        }
     }
 
     @Override
     public String report() {
-        return "";
+        return "SmartBlinds "+ label +"{" +
+                "serialNumber='" + serialNumber + '\'' +
+                ", isOn=" + isOn +
+                '}';
+    }
+
+    @Override
+    public void run(){}
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+    public String getLabel() {
+        return label;
+    }
+    public void setLabel(String label) {
+        this.label = label;
+    }
+    public boolean isOn() {
+        return isOn;
+    }
+    public void setOn(boolean on) {
+        isOn = on;
     }
 }

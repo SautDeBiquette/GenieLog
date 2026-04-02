@@ -1,11 +1,12 @@
 package components.devices;
 
+import components.smartDevices.SmartWashingMachine;
 import factories.DeviceFactory;
 import interfaces.SmartDevice;
 
 public class WashingMachine  extends DeviceFactory {
     @Override
     public SmartDevice createSmartDevice() {
-        return null;
+        return new SmartWashingMachine();
     }
 }
