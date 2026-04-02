@@ -1,6 +1,6 @@
-package classes.devices;
+package components.devices;
 
-import classes.smartDevices.SmartBlinds;
+import components.smartDevices.SmartBlinds;
 import factories.DeviceFactory;
 import interfaces.SmartDevice;
 

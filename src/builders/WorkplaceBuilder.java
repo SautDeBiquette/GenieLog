@@ -1,12 +1,13 @@
 package builders;
 
-import components.hosts.Home;
 import components.hosts.Room;
+import components.hosts.Workplace;
 import interfaces.HostBuilder;
 
 import java.util.List;
 
-public class HomeBuilder implements HostBuilder {
+public class WorkplaceBuilder implements HostBuilder {
+
     private List<Room> rooms;
     private String name;
     private String location;
@@ -26,7 +27,7 @@ public class HomeBuilder implements HostBuilder {
         this.location = location;
     }
 
-    public Home getResult() {
-        return new Home(rooms, name, location);
+    public Workplace getResult() {
+        return new Workplace(rooms, name, location);
     }
 }

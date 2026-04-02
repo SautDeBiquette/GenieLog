@@ -1,10 +1,10 @@
-package classes.smartDevices;
+package components.smartDevices;
 
 import interfaces.SmartDevice;
 
 import java.sql.Time;
 
-public class SmartCoffeeMachine implements SmartDevice {
+public class SmartDishwasher implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;
@@ -43,12 +43,12 @@ public class SmartCoffeeMachine implements SmartDevice {
     }
     @Override
     public void turnOn() {
-        this.setOn(true);
+
     }
 
     @Override
     public void turnOff() {
-        this.setOn(false);
+
     }
 
     @Override

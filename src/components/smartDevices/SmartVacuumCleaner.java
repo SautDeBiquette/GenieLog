@@ -1,10 +1,10 @@
-package classes.smartDevices;
+package components.smartDevices;
 
 import interfaces.SmartDevice;
 
 import java.sql.Time;
 
-public class SmartDoor implements SmartDevice {
+public class SmartVacuumCleaner implements SmartDevice {
     private String serialNumber;
     private String label;
     private boolean isOn;

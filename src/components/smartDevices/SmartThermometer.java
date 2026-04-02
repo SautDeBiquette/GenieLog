@@ -1,4 +1,4 @@
-package classes.smartDevices;
+package components.smartDevices;
 
 import interfaces.SmartDevice;
 

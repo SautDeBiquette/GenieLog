@@ -1,9 +1,9 @@
-package classes.devices;
+package components.devices;
 
 import factories.DeviceFactory;
 import interfaces.SmartDevice;
 
-public class FoodDispenser  extends DeviceFactory {
+public class Dishwasher  extends DeviceFactory {
     @Override
     public SmartDevice createSmartDevice() {
         return null;

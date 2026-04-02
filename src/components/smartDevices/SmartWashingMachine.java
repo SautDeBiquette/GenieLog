@@ -1,11 +1,11 @@
-package classes.smartDevices;
+package components.smartDevices;
 
 import interfaces.SmartDevice;
 
 import java.sql.Time;
 
-public class SmartBlinds implements SmartDevice {
-    private  String serialNumber;
+public class SmartWashingMachine implements SmartDevice {
+    private String serialNumber;
     private String label;
     private boolean isOn;
     private Time schedule;
@@ -41,17 +41,14 @@ public class SmartBlinds implements SmartDevice {
     public void setSchedule(Time schedule) {
         this.schedule = schedule;
     }
-
     @Override
     public void turnOn() {
         this.setOn(true);
-        System.out.println("Les volets s'ouvrent ");
     }
 
     @Override
     public void turnOff() {
         this.setOn(false);
-        System.out.println("Les volets se ferment ");
     }
 
     @Override
