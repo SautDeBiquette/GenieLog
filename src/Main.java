@@ -8,9 +8,12 @@ import components.hosts.Workplace;
 import components.smartDevices.*;
 import factories.DeviceFactory;
 import interfaces.SmartDevice;
+import utils.POSITION;
 import utils.Timer;
+import utils.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -113,6 +116,10 @@ public class Main {
                 + " à " + workplace.getLocation());
         System.out.println("Salles : " + workplace.getRooms().size() + "\n");
 
+        //Definition d'un User :
+        User user = new User("Laurent O'Neil", Map.of("home", home, "workplace", workplace));
+        user.setPosition(POSITION.HOME);
+        user.helloWorld();
 
         //Définition des différents Threads
         Thread blindsThread = new Thread(blinds);

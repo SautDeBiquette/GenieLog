@@ -7,28 +7,29 @@ public class SmartDoor implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String PORTE = "La porte [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("La porte [" + label + "] est déjà ouverte ");
+            notifyUser(PORTE + label + "] est déjà ouverte ");
         } else {
-            notifyUser("La porte [" + label + "] s'ouvre...");
+            notifyUser(PORTE + label + "] s'ouvre...");
             this.setOn(true);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("La porte [" + label + "] est maintenant ouverte ");
+            notifyUser(PORTE + label + "] est maintenant ouverte ");
         }
     }
 
     @Override
     public void turnOff() {
         if (this.isOn()) {
-            notifyUser("La porte [" + label + "] se ferme...");
+            notifyUser(PORTE + label + "] se ferme...");
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("La porte [" + label + "] est fermée ");
+            notifyUser(PORTE + label + "] est fermée ");
         } else {
-            notifyUser("La porte [" + label + "] est déjà fermée ");
+            notifyUser(PORTE + label + "] est déjà fermée ");
         }
     }
 

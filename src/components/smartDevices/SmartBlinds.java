@@ -26,12 +26,12 @@ public class SmartBlinds implements SmartDevice {
     @Override
     public void turnOff() {
         if(this.isOn()) {
-            notifyUser("Les volets [" + label + "] se ferment...");
+            notifyUser(VOLETS + label + "] se ferment...");
             this.setOn(false);
             try { Thread.sleep(300);} catch (InterruptedException e) {Thread.currentThread().interrupt();}
-            notifyUser("Les volets [" + label + "] sont fermés ");
+            notifyUser(VOLETS + label + "] sont fermés ");
         } else {
-            notifyUser("Les volets [" + label + "] sont déjà fermés ");
+            notifyUser(VOLETS + label + "] sont déjà fermés ");
         }
     }
 

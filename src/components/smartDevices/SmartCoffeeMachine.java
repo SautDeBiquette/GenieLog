@@ -7,10 +7,12 @@ public class SmartCoffeeMachine implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String MACHINECAFE = "La machine à café [" ;
+
     @Override
     public void turnOn() {
         if (!this.isOn()) {
-            notifyUser("la machine à café [" + label + "] se réveille");
+            notifyUser(MACHINECAFE + label + "] se réveille");
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -18,22 +20,22 @@ public class SmartCoffeeMachine implements SmartDevice {
             }
         }
         this.setOn(true);
-        notifyUser("la machine à café [" + label + "] fait un café... ");
+        notifyUser(MACHINECAFE + label + "] fait un café... ");
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        notifyUser("la machine à café [" + label + "] à fini de faire un café");
+        notifyUser(MACHINECAFE + label + "] à fini de faire un café");
     }
 
     @Override
     public void turnOff() {
         if (!this.isOn()) {
-            notifyUser("la machine à café [" + label + "] est déjà en veille");
+            notifyUser(MACHINECAFE + label + "] est déjà en veille");
         } else {
             this.setOn(false);
-            System.out.println("La machine à café [" + label + "] est en veille");
+            System.out.println(MACHINECAFE + label + "] est en veille");
         }
     }
 

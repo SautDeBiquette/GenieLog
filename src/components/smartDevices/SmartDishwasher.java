@@ -7,16 +7,17 @@ public class SmartDishwasher implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String LAVEVAISSELLE = "Le lave-vaisselle [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("Le lave-vaisselle [" + label + "] est déjà en cours de lavage ");
+            notifyUser(LAVEVAISSELLE + label + "] est déjà en cours de lavage ");
         } else {
-            notifyUser("Le lave-vaisselle [" + label + "] démarre un cycle de lavage...");
+            notifyUser(LAVEVAISSELLE + label + "] démarre un cycle de lavage...");
             this.setOn(true);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le lave-vaisselle [" + label + "] a terminé son cycle de lavage ");
+            notifyUser(LAVEVAISSELLE + label + "] a terminé son cycle de lavage ");
             this.setOn(false);
         }
     }
@@ -26,9 +27,9 @@ public class SmartDishwasher implements SmartDevice {
         if (this.isOn()) {
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le lave-vaisselle [" + label + "] s'arrête ");
+            notifyUser(LAVEVAISSELLE + label + "] s'arrête ");
         } else {
-            notifyUser("Le lave-vaisselle [" + label + "] n'est pas en cours de fonctionnement ");
+            notifyUser(LAVEVAISSELLE + label + "] n'est pas en cours de fonctionnement ");
         }
     }
 
