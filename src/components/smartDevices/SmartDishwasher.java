@@ -16,7 +16,7 @@ public class SmartDishwasher implements SmartDevice {
         } else {
             notifyUser(LAVEVAISSELLE + label + "] démarre un cycle de lavage...");
             this.setOn(true);
-            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try { Thread.sleep(6000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             notifyUser(LAVEVAISSELLE + label + "] a terminé son cycle de lavage ");
             this.setOn(false);
         }

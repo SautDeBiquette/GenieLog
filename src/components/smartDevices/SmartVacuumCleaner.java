@@ -55,7 +55,7 @@ public class SmartVacuumCleaner implements SmartDevice {
 
     @Override
     public void run() {
-        this.schedule(11100);
+        this.schedule(11110);
     }
     public String getSerialNumber() {
         return serialNumber;

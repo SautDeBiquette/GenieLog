@@ -7,16 +7,17 @@ public class SmartWashingMachine implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String LAVELINGE = "Le lave-linge [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("Le lave-linge [" + label + "] est déjà en cours de lavage ");
+            notifyUser(LAVELINGE + label + "] est déjà en cours de lavage ");
         } else {
-            notifyUser("Le lave-linge [" + label + "] démarre un cycle de lavage...");
+            notifyUser(LAVELINGE + label + "] démarre un cycle de lavage...");
             this.setOn(true);
-            try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le lave-linge [" + label + "] a terminé son cycle de lavage ");
+            try { Thread.sleep(6000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            notifyUser(LAVELINGE + label + "] a terminé son cycle de lavage ");
             this.setOn(false);
         }
     }
@@ -24,12 +25,12 @@ public class SmartWashingMachine implements SmartDevice {
     @Override
     public void turnOff() {
         if (this.isOn()) {
-            notifyUser("Le lave-linge [" + label + "] s'arrête...");
+            notifyUser(LAVELINGE + label + "] s'arrête...");
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le lave-linge [" + label + "] est arrêté ");
+            notifyUser(LAVELINGE + label + "] est arrêté ");
         } else {
-            notifyUser("Le lave-linge [" + label + "] n'est pas en cours de fonctionnement ");
+            notifyUser(LAVELINGE + label + "] n'est pas en cours de fonctionnement ");
         }
     }
 
