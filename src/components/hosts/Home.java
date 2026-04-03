@@ -1,9 +1,9 @@
 package components.hosts;
 
-import java.util.List;
+import java.util.Map;
 
 public class Home extends Building {
-    public Home(List<Room> rooms, String name, String location) {
+    public Home(Map<String,Room> rooms, String name, String location) {
         super(rooms, name, location);
     }
 }

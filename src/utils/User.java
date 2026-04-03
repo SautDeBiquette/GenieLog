@@ -45,8 +45,72 @@ public class User implements Runnable {
         );
     }
 
+    public void leaveAt(POSITION newPosition, int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println(this.name + " part de " + this.getPosition());
+        Map<String, Building> buildings = this.getBuildingList();
+        switch (newPosition) {
+            case HOME -> {
+                buildings.get("home").getRooms().get("Salon").getRoomsDevices().get("blinds").turnOff();
+                buildings.get("home").getRooms().get("Cuisine").getRoomsDevices().get("coffee").turnOff();
+            }
+            case WORKPLACE -> {
+                buildings.get("workplace").getRooms().get("Open Space").getRoomsDevices().get("blinds").turnOff();
+                buildings.get("workplace").getRooms().get("Salle café").getRoomsDevices().get("coffee").turnOff();
+            }
+        }
+        System.out.println("L'application à préparé le départ de " + this.getName());
+        this.setPosition(newPosition);
+    }
+
+    public void leaveFor(POSITION newPosition, int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println(this.name + " part pour " + newPosition);
+        Map<String, Building> buildings = this.getBuildingList();
+        switch (newPosition) {
+            case HOME -> {
+                buildings.get("home").getRooms().get("Salon").getRoomsDevices().get("blinds").turnOn();
+                buildings.get("home").getRooms().get("Cuisine").getRoomsDevices().get("coffee").turnOn();
+                buildings.get("workplace").getRooms().get("Open Space").getRoomsDevices().get("blinds").turnOff();
+                buildings.get("workplace").getRooms().get("Salle café").getRoomsDevices().get("coffee").turnOff();
+            }
+            case WORKPLACE -> {
+                buildings.get("workplace").getRooms().get("Open Space").getRoomsDevices().get("blinds").turnOn();
+                buildings.get("workplace").getRooms().get("Salle café").getRoomsDevices().get("coffee").turnOn();
+                buildings.get("home").getRooms().get("Salon").getRoomsDevices().get("blinds").turnOff();
+                buildings.get("home").getRooms().get("Cuisine").getRoomsDevices().get("coffee").turnOff();
+            }
+        }
+        System.out.println("L'application à préparé l'arrivée de " + this.getName());
+        this.setPosition(newPosition);
+    }
+
     @Override
     public void run() {
+        leaveAt(POSITION.HOME, 12000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("Sacha est rentrée de chez la nounou et enclenche l'ouverture de ses volets elle-même");
+        this.getBuildingList().get("home").getRooms().get("Salon").getRoomsDevices().get("blinds").turnOn();
+        leaveFor(POSITION.WORKPLACE, 13000);
+        leaveFor(POSITION.HOME, 6000);
+        try {
+            Thread.sleep(8000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("Bonne nuit Sacha et Violette !!");
 
     }
 }

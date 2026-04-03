@@ -4,15 +4,15 @@ import components.hosts.Home;
 import components.hosts.Room;
 import interfaces.HostBuilder;
 
-import java.util.List;
+import java.util.Map;
 
 public class HomeBuilder implements HostBuilder {
-    private List<Room> rooms;
+    private Map<String, Room> rooms;
     private String name;
     private String location;
 
     @Override
-    public void setRooms(List<Room> rooms) {
+    public void setRooms(Map<String, Room> rooms) {
         this.rooms = rooms;
     }
 

@@ -2,7 +2,7 @@ package builders;
 
 import components.hosts.Room;
 
-import java.util.List;
+import java.util.Map;
 
 public class HostDirector {
 
@@ -14,13 +14,13 @@ public class HostDirector {
         this.homeBuilder = homeBuilder;
     }
 
-    public void constructWorkplace(String name, String location, List<Room> rooms) {
+    public void constructWorkplace(String name, String location, Map<String, Room> rooms) {
         workplaceBuilder.setName(name);
         workplaceBuilder.setLocation(location);
         workplaceBuilder.setRooms(rooms);
     }
 
-    public void constructHome(String name, String location, List<Room> rooms) {
+    public void constructHome(String name, String location, Map<String, Room> rooms) {
         homeBuilder.setName(name);
         homeBuilder.setLocation(location);
         homeBuilder.setRooms(rooms);

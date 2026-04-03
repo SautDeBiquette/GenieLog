@@ -1,22 +1,20 @@
 package components.hosts;
 
-import interfaces.SmartDevice;
-
-import java.util.List;
+import java.util.Map;
 
 public abstract class Building {
 
-    private final List<Room> rooms;
+    private final Map<String, Room> rooms;
     private final String name;
     private final String location;
 
-    public Building(List<Room> rooms, String name, String location) {
+    public Building(Map<String, Room> rooms, String name, String location) {
         this.rooms = rooms;
         this.name = name;
         this.location = location;
     }
 
-    public List<Room> getRooms() {
+    public Map<String, Room> getRooms() {
         return rooms;
     }
 

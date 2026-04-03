@@ -2,28 +2,28 @@ package components.hosts;
 
 import interfaces.SmartDevice;
 
-import java.util.List;
+import java.util.Map;
 
 public class Room {
-    private final List<SmartDevice> roomsDevices;
+    private final Map<String, SmartDevice> roomsDevices;
     private String roomName;
 
-    public Room(List<SmartDevice> roomsDevices, String roomName) {
+    public Room(Map<String, SmartDevice> roomsDevices, String roomName) {
         this.roomsDevices = roomsDevices;
         this.roomName = roomName;
     }
 
-    public void addSmartDevice(SmartDevice smartDevice) {
-        this.roomsDevices.add(smartDevice);
+    public void addSmartDevice(String name, SmartDevice smartDevice) {
+        this.roomsDevices.put(name, smartDevice);
         System.out.println("Smart device successfully added");
     }
 
-    public void removeSmartDevice(SmartDevice smartDevice) {
-        this.roomsDevices.remove(smartDevice);
+    public void removeSmartDevice(String name) {
+        this.roomsDevices.remove(name);
         System.out.println("Smart device successfully removed");
     }
 
-    public List<SmartDevice> getRoomsDevices() {
+    public Map<String, SmartDevice> getRoomsDevices() {
         return this.roomsDevices;
     }
 
