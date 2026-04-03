@@ -7,16 +7,17 @@ public class SmartFoodDispenser implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String DISTRIBUTEUR = "Le distributeur de nourriture [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("Le distributeur de nourriture [" + label + "] est déjà en train de distribuer ");
+            notifyUser(DISTRIBUTEUR + label + "] est déjà en train de distribuer ");
         } else {
-            notifyUser("Le distributeur de nourriture [" + label + "] distribue une portion...");
+            notifyUser(DISTRIBUTEUR + label + "] distribue une portion...");
             this.setOn(true);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le distributeur de nourriture [" + label + "] a terminé la distribution ");
+            notifyUser(DISTRIBUTEUR + label + "] a terminé la distribution ");
             this.setOn(false);
         }
     }
@@ -24,12 +25,12 @@ public class SmartFoodDispenser implements SmartDevice {
     @Override
     public void turnOff() {
         if (this.isOn()) {
-            notifyUser("Le distributeur de nourriture [" + label + "] s'arrête... ");
+            notifyUser(DISTRIBUTEUR + label + "] s'arrête... ");
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le distributeur de nourriture [" + label + "] est arrêté ");
+            notifyUser(DISTRIBUTEUR + label + "] est arrêté ");
         } else {
-            notifyUser("Le distributeur de nourriture [" + label + "] n'est pas en cours de fonctionnement ");
+            notifyUser(DISTRIBUTEUR + label + "] n'est pas en cours de fonctionnement ");
         }
     }
 

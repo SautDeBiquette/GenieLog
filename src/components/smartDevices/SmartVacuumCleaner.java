@@ -7,16 +7,17 @@ public class SmartVacuumCleaner implements SmartDevice {
     private String label;
     private boolean isOn;
 
+    private static final String ASPIRATEUR = "L'aspirateur [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("L'aspirateur [" + label + "] est déjà en train d'aspirer ");
+            notifyUser(ASPIRATEUR + label + "] est déjà en train d'aspirer ");
         } else {
-            notifyUser("L'aspirateur [" + label + "] démarre un cycle de nettoyage...");
+            notifyUser(ASPIRATEUR + label + "] démarre un cycle de nettoyage...");
             this.setOn(true);
             try { Thread.sleep(600); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("L'aspirateur [" + label + "] a terminé le cycle de nettoyage ");
+            notifyUser(ASPIRATEUR + label + "] a terminé le cycle de nettoyage ");
             this.setOn(false);
         }
     }
@@ -24,12 +25,12 @@ public class SmartVacuumCleaner implements SmartDevice {
     @Override
     public void turnOff() {
         if (this.isOn()) {
-            notifyUser("L'aspirateur [" + label + "] s'arrête... ");
+            notifyUser(ASPIRATEUR + label + "] s'arrête... ");
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("L'aspirateur [" + label + "] est arrêté ");
+            notifyUser(ASPIRATEUR + label + "] est arrêté ");
         } else {
-            notifyUser("L'aspirateur [" + label + "] n'est pas en cours de fonctionnement ");
+            notifyUser(ASPIRATEUR + label + "] n'est pas en cours de fonctionnement ");
         }
     }
 

@@ -8,16 +8,17 @@ public class SmartThermometer implements SmartDevice {
     private boolean isOn;
     private double temperature;
 
+    private static final String THERMOMETRE = "Le thermomètre [" ;
 
     @Override
     public void turnOn() {
         if (this.isOn()) {
-            notifyUser("Le thermomètre [" + label + "] est déjà en cours de mesure ");
+            notifyUser(THERMOMETRE + label + "] est déjà en cours de mesure ");
         } else {
-            notifyUser("Le thermomètre [" + label + "] démarre une mesure...");
+            notifyUser(THERMOMETRE + label + "] démarre une mesure...");
             this.setOn(true);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le thermomètre [" + label + "] a terminé la mesure ");
+            notifyUser(THERMOMETRE + label + "] a terminé la mesure ");
             this.setOn(false);
         }
     }
@@ -25,12 +26,12 @@ public class SmartThermometer implements SmartDevice {
     @Override
     public void turnOff() {
         if (this.isOn()) {
-            System.out.println("Le thermomètre [" + label + "] s'éteint... ");
+            System.out.println(THERMOMETRE + label + "] s'éteint... ");
             this.setOn(false);
             try { Thread.sleep(300); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-            notifyUser("Le thermomètre [" + label + "] est éteint ");
+            notifyUser(THERMOMETRE + label + "] est éteint ");
         } else {
-            System.out.println("Le thermomètre [" + label + "] est déjà éteint ");
+            System.out.println(THERMOMETRE + label + "] est déjà éteint ");
         }
     }
 
